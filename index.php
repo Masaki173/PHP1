@@ -22,3 +22,6 @@ echo "正解" .PHP_EOL;
 }
 
 ?>
+
+</body>
+</html>
