@@ -1,4 +1,10 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
 <?php echo "日本の首都は？";?>
 
 <form method="post">
@@ -13,5 +19,8 @@ echo "正解" .PHP_EOL;
 }else{
   echo "不正解" .PHP_EOL;
 }
+?>
+</body>
+</html>
 
 
