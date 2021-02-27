@@ -14,5 +14,4 @@ echo "正解" .PHP_EOL;
   echo "不正解" .PHP_EOL;
 }
 
-?>
 
