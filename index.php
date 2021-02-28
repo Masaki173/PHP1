@@ -20,4 +20,4 @@ echo "正解" .PHP_EOL;
 }else{
   echo "不正解" .PHP_EOL;
 }
-
+?>
