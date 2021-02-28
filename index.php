@@ -9,18 +9,16 @@
 
 <form method="post">
 <input type="text" name="answer"></input>
+<button type="submit">OK</button>
 </form>
 
 
 <?php
-$answer = filter_input(INPUT_POST, 'answer');
-if($answer==="東京")｛
+$answer = $_POST['answer'];
+if(isset($answer) || $answer==="東京")｛
 echo "正解" .PHP_EOL;
 }else{
   echo "不正解" .PHP_EOL;
 }
-?>
-</body>
-</html>
 
 
