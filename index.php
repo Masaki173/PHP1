@@ -8,20 +8,17 @@
 <?php echo "日本の首都は？";?>
 
 <form method="post">
-<input type="text" name="answer"></input>
+<input type="text" name='answer'>
 <button type="submit">OK</button>
 </form>
 
 
 <?php
-$answer = $_POST['answer'];
-if(isset($answer) || $answer==="東京")｛
-echo "正解" .PHP_EOL;
-}else{
-  echo "不正解" .PHP_EOL;
-}
-
-?>
-
-</body>
-</html>
+if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+  $answer = $_POST['answer'];
+  if($answer === "東京"){
+  echo '正解' . PHP_EOL;
+  }else{
+  echo '不正解' . PHP_EOL;
+  }
+} 
