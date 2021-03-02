@@ -14,7 +14,7 @@
 
 
 <?php
-if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $answer = $_POST['answer'];
   if($answer === "東京") {
   echo '正解' . PHP_EOL;
