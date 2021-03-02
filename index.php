@@ -16,9 +16,14 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST'){
   $answer = $_POST['answer'];
-  if($answer === "東京"){
+  if($answer === "東京") {
   echo '正解' . PHP_EOL;
-  }else{
+  } else {
   echo '不正解' . PHP_EOL;
   }
 } 
+
+?>
+
+</body>
+</html>
