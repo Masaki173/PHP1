@@ -5,21 +5,23 @@
   <title>Document</title>
 </head>
 <body>
-<form method="post">
-<input type="text" name="result">
-<button type="submit">検索</button>
- <?php 
- if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  $fruits = ['apple' , 'orange', 'strawberry'];
-  $result = $_POST['result'];
-  
-  if(in_array($result, $fruits)){
-    ?><p><?php echo "${result}は、配列fruitsの中に存在してます。" . PHP_EOL;?></p><?php
-  }else{
-   ?><p><?php echo "${result}は、配列fruitsの中に存在していません。" . PHP_EOL;?></p><?php
+  <?php 
+  $questions = [
+   "問題" => "日本の首都は？"
+   ];
+   foreach($questions as $key => $question) {
+     ?><h1><?php echo $key.' '.$question . PHP_EOL; ?></h1><?php
+   }
+  $answers = [
+  "回答1" => "大阪",
+  "回答2" => "北海道",
+  "回答3" => "箱根",
+  "回答4" => "東京",
+  ]; 
+  foreach($answers as $key => $answer) {
+ ?><p><?php echo $key. ' '.$answer . PHP_EOL;?></p><?php
   }
-}
-
   ?>
+
 </body>
 </html>
