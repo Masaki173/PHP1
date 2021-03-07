@@ -16,7 +16,7 @@
   <?php 
   $you = filter_input(INPUT_POST, "you");
   ?><p><?php echo "自分: $you" . PHP_EOL; ?></p><?php
- 
+  if ($_SERVER['REQUEST_METHOD'] === 'POST'){
  $n = mt_rand(1, 3);
     switch($n) {
       case 1:
@@ -35,6 +35,7 @@
       ?><p><?php echo "$game" . PHP_EOL; ?></p><?php
       break;
    } 
+  }
   ?>
 </body>
 </html>
