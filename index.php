@@ -7,9 +7,9 @@
 <body>
  <form method ="post">
   <select name="you">
-  <option value="グー">グー</option>
-  <option value="チョキ">チョキ</option>
-  <option value="パー">パー</option>
+  <option value="自分: グー">グー</option>
+  <option value="自分: チョキ">チョキ</option>
+  <option value="自分: パー">パー</option>
   </select>
   <button>じゃんけん！</button>
   </form>
@@ -20,17 +20,17 @@
  $n = mt_rand(1, 3);
     switch($n) {
       case 1:
-      echo '相手: グー';
+      echo 'グー';
       $game = ($you == 'グー' ? 'あいこ！' : ($you == 'パー' ? 'あなたの勝利です！' : 'あなたの敗北です。。。'));
       ?><p><?php echo "$game" . PHP_EOL; ?></p><?php
       break;
       case 2:
-      echo '相手: チョキ';
+      echo 'チョキ';
       $game = ($you == 'チョキ' ? 'あいこ！' : ($you == 'グー' ? 'あなたの勝利です！' : 'あなたの敗北です。。。'));
       ?><p><?php echo "$game" . PHP_EOL; ?></p><?php
       break;
       case 3:
-      echo '相手: パー';
+      echo 'パー';
       $game = ($you == 'パー' ? 'あいこ！' : ($you == 'チョキ' ? 'あなたの勝利です！' : 'あなたの敗北です。。。'));
       ?><p><?php echo "$game" . PHP_EOL; ?></p><?php
       break;
