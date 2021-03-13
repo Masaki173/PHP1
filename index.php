@@ -9,6 +9,7 @@
   <p><label>FizzNum: <input type="text" name="fizznum"></label></p>
   <p><label>BuzzNum:<input type="text" name="buzznum"></label></p>
   <button type="submit">実行</button>
+ <form method ="post">
   </form>
   <?php 
   if ($_SERVER['REQUEST_METHOD'] === 'POST'){
@@ -28,6 +29,5 @@
     }
   }
 }
-  ?>
 </body>
 </html>
