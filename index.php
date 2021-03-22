@@ -1,3 +1,35 @@
+<?php
+
+define('DSN', 'mysql:host=127.0.0.1;dbname=posts;charset=utf8mb4');
+define('DB_USER', 'root');
+define('DB_PASS', 'masaina0812');
+
+try{
+  $pdo = new PDO(
+    DSN,
+    DB_USER,
+    DB_PASS,
+    [
+      PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+      PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ,
+      PDO::ATTR_EMULATE_PREPARES => false,
+    ]
+  );
+} catch (PDOException $e){
+  echo $e->getMessage();
+  exit;
+}
+function h($str){
+  return htmlspecialchars($str, ENT_QUOTES, 'UTF-8');
+}
+function getPosts($pdo)
+{
+  $stmt = $pdo->query("SELECT * FROM posts");
+  $posts = $stmt-> fetchALL();
+  return $posts;
+}
+$posts = getPosts($pdo);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,29 +37,19 @@
   <title>Document</title>
 </head>
 <body>
-  <form method = "post">
-  <p><label>FizzNum: <input type="text" name="fizznum"></label></p>
-  <p><label>BuzzNum:<input type="text" name="buzznum"></label></p>
-  <button type="submit">実行</button>
- <form method ="post">
+<h1>掲示板</h1>
+<h2>新規投稿</h2>
+  <form action="result.php" method = "post" action="result.php">
+  <p><label>name:<input type="text" name="title"></label></p>
+  <p>投稿内容:</p>
+  <p><textarea name="content"></textarea></p>
+  <button type="submit">投稿</button>
   </form>
-  <?php 
-  if ($_SERVER['REQUEST_METHOD'] === 'POST'){
-   $fizz = $_POST["fizznum"];
-   $buzz = $_POST["buzznum"];
-  if(!ctype_digit($fizz) || !ctype_digit($buzz) ){
-    ?><p><?php echo "整数値を入力してください" . PHP_EOL; ?></p><?php
-    return;
-     }
-  for($i = 1; $i < 100; $i++){
-   if($i%$fizz === 0 && $i%$buzz === 0){
-  ?><p><?php echo "FizzBuzz $i" . PHP_EOL;?></p><?php
-  }elseif($i%$fizz === 0){
-  ?><p><?php echo "Fizz $i" . PHP_EOL;?></p><?php
-  }elseif($i%$buzz === 0){
-  ?><p><?php echo "Buzz $i" . PHP_EOL;?></p><?php
-    }
-  }
-}
+<?php foreach ($posts as $post): ?>
+ <p>No:<?= h($post->id);?></p>
+ <p>名前:<?= h($post->title);?></p>
+ <p>投稿内容:<?= h($post->content); ?></p>
+ <?php endforeach ?>
+
 </body>
 </html>
