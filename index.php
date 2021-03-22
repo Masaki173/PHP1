@@ -50,5 +50,6 @@ $posts = getPosts($pdo);
  <p>名前:<?= h($post->title);?></p>
  <p>投稿内容:<?= h($post->content); ?></p>
  <?php endforeach ?>
+
 </body>
 </html>
