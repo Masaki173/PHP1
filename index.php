@@ -49,6 +49,10 @@ $posts = getPosts($pdo);
  <p>No:<?= h($post->id);?></p>
  <p>名前:<?= h($post->title);?></p>
  <p>投稿内容:<?= h($post->content); ?></p>
+ <form action="delete.php" method="post">
+   <input type="hidden" name="id" value="<?= h($post->id);?>">
+   <button type="submmit">削除</button>
+  </form>
  <?php endforeach ?>
 
 </body>
