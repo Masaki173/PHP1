@@ -28,6 +28,7 @@ function getPosts($pdo)
   $posts = $stmt-> fetchALL();
   return $posts;
 }
+$counter = 1;
 $posts = getPosts($pdo);
 ?>
 <!DOCTYPE html>
@@ -46,9 +47,10 @@ $posts = getPosts($pdo);
   <button type="submit">投稿</button>
   </form>
 <?php foreach ($posts as $post): ?>
- <p>No:<?= h($post->id);?></p>
- <p>名前:<?= h($post->title);?></p>
- <p>投稿内容:<?= h($post->content); ?></p>
+ <?php $id = $counter++; ?>
+  <p>No:<?= h($id);?></p>
+  <p>名前:<?= h($post->title);?></p>
+  <p>投稿内容:<?= h($post->content); ?></p>
  <form action="delete.php" method="post">
    <input type="hidden" name="id" value="<?= h($post->id);?>">
    <button type="submmit">削除</button>
