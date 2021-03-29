@@ -55,6 +55,10 @@ $posts = getPosts($pdo);
    <input type="hidden" name="id" value="<?= h($post->id);?>">
    <button type="submmit">削除</button>
   </form>
+  <form action="edit.php" method="get">
+   <input type="hidden" name="id" value="<?= h($post->id);?>">
+   <button type="submmit">編集</button>
+  </form>
  <?php endforeach ?>
 </body>
 </html>
