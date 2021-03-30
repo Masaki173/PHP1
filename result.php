@@ -47,6 +47,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 </head>
 <body>
   <h1>投稿が完了しました。</h1>
-  <p><a href="test.php">投稿一覧に戻る</a></p>
+  <p><a href="index.php">投稿一覧に戻る</a></p>
 </body>
 </html>

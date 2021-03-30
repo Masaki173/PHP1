@@ -17,35 +17,29 @@ try{
   echo $e->getMessage();
   exit;
 }
-function h($str){
-  return htmlspecialchars($str, ENT_QUOTES, 'UTF-8');
-}
-function editPost($pdo){
-  $id = filter_input(INPUT_GET, 'id');
-  if (empty($id)){
-    return;
-  }
-  $stmt = $pdo->prepare("SELECT title, content FROM posts WHERE id = :id");
-  $stmt->bindValue('id', $id, PDO::PARAM_INT);
-  $existing_post = $stmt->execute();
-}
-  $existing_post = editPost($pdo);
-?>  
+  $get_id = $_GET["id"];
+  $sql = "SELECT * FROM posts WHERE id = $get_id";
+  $stmt = $pdo->query($sql);
+  $stmt->execute();
 
+?>  
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Document</title>
+ <meta charset="UTF-8">
+ <title>Document</title>
 </head>
 <body>
 <h1>編集ページ</h1>
-<form action="update.php" method ="post">
-  <p><label>name:<input type="text" name="new_title" value="<?= $existing_post->title; ?>"></label></p>
+<?php foreach($stmt as $loop):?>
+ <form action="update.php" method ="post">
+  <input type="hidden" name="id"value="<?= $loop->id;?>">
+  <p><label>name:<input type="text" name="new_title" value="<?= $loop->title;?>"></label></p>
   <p>投稿内容:</p>
-  <p><textarea name="new_content" value="content"><?= $existing_post->content ; ?></textarea></p>
-  <input type="hidden" name="id" >
+  <p><textarea name="new_content"><?= $loop->content;?></textarea></p>
   <button type="submit">更新</button>
-  </form>
+  <button type="button" onclick="history.back()">戻る</button>
+ </form>
+<?php endforeach ?>
 </body>
 </html>

@@ -18,28 +18,29 @@ try{
   echo $e->getMessage();
   exit;
 }
-function h($str){
-  return htmlspecialchars($str, ENT_QUOTES, 'UTF-8');
-}
 function updatePost($pdo){
+  $id = filter_input(INPUT_POST, 'id');
   $new_name = trim(filter_input(INPUT_POST, 'new_title'));
   $new_content = trim(filter_input(INPUT_POST, 'new_content'));
+if (empty($id)){
+    return;
+  }
 if($new_name === ''){
   return;
 } 
 if($new_content === ''){
   return;
 } 
-$stmt = $pdo->prepare("UPDATE posts SET title = :new_title, content = :new_content");
-
-
-$stmt->bindValue('new_title' ,$new_name, PDO::PARAM_STR );
-$stmt->bindValue('new_content' ,$new_content, PDO::PARAM_STR );
-$stmt->execute();
+  $stmt = $pdo->prepare("UPDATE posts SET title = :new_title, content = :new_content WHERE id = :id");
+  $stmt->bindValue('id', $id, PDO::PARAM_INT);
+  $stmt->bindValue('new_title' ,$new_name, PDO::PARAM_STR );
+  $stmt->bindValue('new_content' ,$new_content, PDO::PARAM_STR );
+  $stmt->execute();
 }
 if ($_SERVER['REQUEST_METHOD'] === 'POST'){
   updatePost($pdo);
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -49,6 +50,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 </head>
 <body>
 <h1>投稿の編集が完了しました</h1>
-<p><a href="test.php">投稿一覧に戻る</a></p>
+<p><a href="index.php">投稿一覧に戻る</a></p>
 </body>
 </html>
