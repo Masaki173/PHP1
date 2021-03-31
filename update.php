@@ -18,18 +18,30 @@ try{
   echo $e->getMessage();
   exit;
 }
-
-function deletePost($pdo){
+function updatePost($pdo){
   $id = filter_input(INPUT_POST, 'id');
-  if (empty($id)){
+  $new_name = trim(filter_input(INPUT_POST, 'new_title'));
+  $new_content = trim(filter_input(INPUT_POST, 'new_content'));
+if (empty($id)){
     return;
   }
-  $stmt = $pdo->prepare("DELETE FROM posts WHERE id = :id");
+if($new_name === ''){
+  return;
+} 
+if($new_content === ''){
+  return;
+} 
+  $stmt = $pdo->prepare("UPDATE posts SET title = :new_title, content = :new_content WHERE id = :id");
   $stmt->bindValue('id', $id, PDO::PARAM_INT);
+  $stmt->bindValue('new_title' ,$new_name, PDO::PARAM_STR );
+  $stmt->bindValue('new_content' ,$new_content, PDO::PARAM_STR );
   $stmt->execute();
 }
-  deletePost($pdo);
-  ?>
+if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+  updatePost($pdo);
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,7 +49,7 @@ function deletePost($pdo){
   <title>Document</title>
 </head>
 <body>
-  <h1>投稿の削除が完了しました</h1>
-  <p><a href="index.php">投稿一覧に戻る</a></p>
+<h1>投稿の編集が完了しました</h1>
+<p><a href="index.php">投稿一覧に戻る</a></p>
 </body>
 </html>
