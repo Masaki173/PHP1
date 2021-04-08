@@ -16,9 +16,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 } );
-Route::get('login', 'FirstController@login' );
-Route::get('register', 'FirstController@register');
+// Route::get('login', 'FirstController@login' );
+// Route::get('register', 'FirstController@register');
 
+Route::get('user', 'UserController@index');
 
+Route::get('user/create', 'UserController@create');
 
 

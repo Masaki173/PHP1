@@ -13,8 +13,8 @@
 <p>@yield('title')</p>
 </div>
 <div class="header-right">
-<a href="/login">login</a>
-<a href="/register">register</a>
+<a href="/user">login</a>
+<a href="/user/create">register</a>
 </div>
 </header>
 <div class="form">
