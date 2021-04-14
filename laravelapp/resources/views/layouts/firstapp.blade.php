@@ -4,7 +4,7 @@
 <style>
 .header-left{float:left;}
 .header-right{float:right;}
-.form{text-align:center;}
+ table{margin:0 auto;}
 </style>
 </head>
 <body>
@@ -13,12 +13,9 @@
 <p>@yield('title')</p>
 </div>
 <div class="header-right">
-<a href="/user">login</a>
-<a href="/user/create">register</a>
+@yield('setting')
 </div>
 </header>
-<div class="form">
-@yield('form')
-</div>
+@yield('content')
 </body>
 </html>
